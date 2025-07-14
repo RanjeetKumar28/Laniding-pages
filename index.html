@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Luxury real estate landing page optimized for Google Ads and Meta Ads." />
+    <meta name="keywords" content="Luxury Mansion, Villa Booking, Real Estate, Mansion Royale" />
+    <meta name="author" content="Your Company Name" />
+    <title>Mansion Royale - Luxury Stay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: #111;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background-color: #000;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo a {
+            text-decoration: none;
+            font-size: 28px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f0c040;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background: #fff;
+            margin: 4px 0;
+            transition: all 0.4s ease;
+        }
+
+        .menu-toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: #000;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+                display: none;
+                animation: slideNav 0.3s ease forwards;
+            }
+
+            nav a {
+                margin-bottom: 10px;
+                font-size: 18px;
+                width: 100%;
+                padding: 10px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav.active {
+                display: flex;
+            }
+        }
+
+        @keyframes slideNav {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero {
+            height: 90vh;
+            background-image: url('https://i.pinimg.com/1200x/6a/e2/8e/6ae28ed300ac717913310de9967f2954.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            flex-direction: column;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            max-width: 700px;
+            margin-bottom: 20px;
+        }
+
+        .hero button {
+            padding: 14px 28px;
+            font-size: 18px;
+            background-color: #f0c040;
+            color: #000;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .hero button:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        #bookingForm {
+            display: none;
+            animation: slideDown 0.6s ease forwards;
+            padding: 60px 30px;
+            background: url('https://i.pinimg.com/736x/85/ad/19/85ad19b1de1d248090bdf63b784e9ca1.jpg') center/cover no-repeat;
+            color: #fff;
+            text-align: center;
+        }
+
+        #bookingForm form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        #bookingForm input,
+        #bookingForm button {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        #bookingForm button {
+            background-color: #f0c040;
+            color: #000;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        #bookingForm button:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #about {
+            padding: 60px 30px;
+            background: #f9f9f9;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        #about h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        #about p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        #about button {
+            padding: 12px 24px;
+            font-size: 16px;
+            margin: 10px 10px 0;
+            border: none;
+            border-radius: 30px;
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #about button:hover {
+            background-color: #f0c040;
+            color: #000;
+        }
+
+        @media (max-width: 600px) {
+            section div {
+                padding: 0 10px;
+            }
+
+            section h2 {
+                font-size: 24px;
+            }
+
+            section h3 {
+                font-size: 22px;
+            }
+
+            section form input,
+            section form textarea,
+            section form button {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="#">𝖑𝖆𝖓𝖉𝖎𝖓𝖌</a>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav-menu">
+            <a href="#">Home</a>
+            <a href="#about">About</a>
+            <a href="#rooms">Rooms</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    <section class="hero">
+        <h1>Welcome to Mansion Royale — Luxury Living Redefined</h1>
+        <button onclick="toggleForm()">Book Your Stay</button>
+    </section>
+
+    <!-- Hidden Booking Form -->
+    <section id="bookingForm">
+        <h2>Book Your Stay at Mansion Royale</h2>
+        <form>
+            <input type="text" name="name" placeholder="Full Name" required />
+            <input type="email" name="email" placeholder="Email Address" required />
+            <input type="tel" name="phone" placeholder="Phone Number" required />
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <input type="date" name="checkin" required style="flex: 1 1 48%;" />
+                <input type="date" name="checkout" required style="flex: 1 1 48%;" />
+            </div>
+            <input type="number" name="guests" placeholder="Number of Guests" required min="1" />
+            <button type="submit">Confirm Booking</button>
+        </form>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Mansion Royale</h2>
+        <p>
+            Welcome to <strong>Mansion Royale</strong> — where elegance meets exclusivity. Nestled in one of the most
+            serene and premium locations, our luxury property is designed for those who appreciate the finer things in
+            life.
+        </p>
+        <p>
+            Whether you seek a peaceful retreat or a stunning venue for your next celebration, Mansion Royale delivers
+            unmatched style, comfort, and privacy. Every detail is thoughtfully crafted — from grand architecture to
+            modern interiors — ensuring an unforgettable experience.
+        </p>
+        <button onmouseover="this.style.backgroundColor='#f0c040'; this.style.color='#000';"
+            onmouseout="this.style.backgroundColor='#000'; this.style.color='#fff';">More-US</button>
+        <button onmouseover="this.style.backgroundColor='#f0c040'; this.style.color='#000';"
+            onmouseout="this.style.backgroundColor='#000'; this.style.color='#fff';">View</button>
+    </section>
+
+    <!-- booking form -->
+
+    <!-- Booking Popup Form -->
+    <div id="popupForm"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(3px); z-index: 9999; align-items: center; justify-content: center; animation: fadeIn 0.4s ease;">
+        <div
+            style="background-color: #fff; padding: 30px; border-radius: 12px; width: 90%; max-width: 400px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); transform: translateY(-50px); animation: slideDown 0.4s ease forwards; position: relative;">
+            <span onclick="closePopup()"
+                style="position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer; color: #333;">&times;</span>
+            <h3 style="margin-bottom: 15px; color: #111;">Complete Your Booking</h3>
+            <form onsubmit="event.preventDefault(); alert('Booking Submitted!'); closePopup();">
+                <input type="text" placeholder="Full Name" required
+                    style="width: 100%; margin-bottom: 12px; padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
+                <input type="email" placeholder="Email Address" required
+                    style="width: 100%; margin-bottom: 12px; padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
+                <input type="date" placeholder="DOB" required
+                    style="width: 100%; margin-bottom: 12px; padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
+                <input type="text" placeholder="Location" required
+                    style="width: 100%; margin-bottom: 18px; padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
+                <button type="submit"
+                    style="width: 100%; padding: 12px; background-color: #f0c040; color: #000; border: none; border-radius: 30px; font-weight: bold; cursor: pointer;">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <!-- Rooms create -->
+    <section id="rooms" style="padding: 60px 20px; background-color: #fff; text-align: center;">
+        <h2 style="font-size: 2rem; margin-bottom: 10px; color: #111;">Our Luxurious Rooms</h2>
+        <p style="font-size: 1rem; color: #555; margin-bottom: 30px;">Explore our exquisite rooms designed for ultimate
+            comfort and luxury.</p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            <div
+                style="background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h3 style="margin-bottom: 10px;">Royal Suite</h3>
+                <img src="https://i.pinimg.com/1200x/c2/20/04/c22004d24b25e3e86a0f26a9599ad147.jpg" alt="Royal Suite"
+                    style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+                <p style="font-size: 0.95rem; color: #444; margin-bottom: 15px;">Experience the epitome of luxury with
+                    our Royal Suite, featuring stunning views and top-notch amenities.</p>
+                <button onclick="toggleForm()"
+                    style="padding: 10px 20px; font-size: 16px; background-color: #f0c040; color: #000; border: none; border-radius: 30px; cursor: pointer;">Book</button>
+            </div>
+
+            <div
+                style="background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h3 style="margin-bottom: 10px;">Deluxe Room</h3>
+                <img src="https://i.pinimg.com/1200x/31/07/56/3107562a18e538b6c91900980a0455bf.jpg" alt="Deluxe Room"
+                    style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+                <p style="font-size: 0.95rem; color: #444; margin-bottom: 15px;">Relax in our Deluxe Room, designed for
+                    comfort and elegance, perfect for a peaceful getaway.</p>
+                <button onclick="toggleForm()"
+                    style="padding: 10px 20px; font-size: 16px; background-color: #f0c040; color: #000; border: none; border-radius: 30px; cursor: pointer;">Book</button>
+            </div>
+
+            <div
+                style="background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h3 style="margin-bottom: 10px;">Executive Suite</h3>
+                <img src="https://i.pinimg.com/1200x/24/50/aa/2450aa8df8db49a26a56d1e237c9744b.jpg"
+                    alt="Executive Suite"
+                    style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+                <p style="font-size: 0.95rem; color: #444; margin-bottom: 15px;">Enjoy the spaciousness of our Executive
+                    Suite, ideal for business travelers and leisure seekers alike.</p>
+                <button onclick="toggleForm()"
+                    style="padding: 10px 20px; font-size: 16px; background-color: #f0c040; color: #000; border: none; border-radius: 30px; cursor: pointer;">Book</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- gallery mein sab phtos or ushki price or description hain -->
+
+    <section id="gallery" style="padding: 60px 20px; background-color: #fff; text-align: center;">
+        <h2 style="font-size: 2rem; margin-bottom: 20px; color: #111;">Gallery</h2>
+        <p style="font-size: 1rem; color: #555; margin-bottom: 30px;">Explore the beauty and elegance of Mansion Royale
+            through our gallery.</p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 30px;">
+            <a href="#rooms-all"
+                style="padding: 10px 20px; background-color: #000; color: #fff; border-radius: 30px; text-decoration: none; transition: all 0.3s;">ROOMS</a>
+            <a href="#windows"
+                style="padding: 10px 20px; background-color: #000; color: #fff; border-radius: 30px; text-decoration: none; transition: all 0.3s;">WINDOWS</a>
+            <a href="#badrooms"
+                style="padding: 10px 20px; background-color: #000; color: #fff; border-radius: 30px; text-decoration: none; transition: all 0.3s;">BADROOMS</a>
+            <a href="#swimming-pool"
+                style="padding: 10px 20px; background-color: #000; color: #fff; border-radius: 30px; text-decoration: none; transition: all 0.3s;">SWIMMING
+                POOL</a>
+            <a href="#living-room"
+                style="padding: 10px 20px; background-color: #000; color: #fff; border-radius: 30px; text-decoration: none; transition: all 0.3s;">LIVING
+                ROOM</a>
+            <a href="#dining-room"
+                style="padding: 10px 20px; background-color: #000; color: #fff; border-radius: 30px; text-decoration: none; transition: all 0.3s;">DINING
+                ROOM</a>
+        </div>
+
+
+
+
+
+
+        <!-- Reusable gallery section generator -->
+        <script>
+            function createGallerySection(id, title, items) {
+                document.write(`
+        <div id="${id}" style="margin-bottom: 50px;">
+          <h3 style="margin-bottom: 20px; color: #111; font-size: 1.5rem;">${title}</h3>
+          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            ${items.map(img => `
+              <div style="width: 300px; transition: transform 0.3s ease;">
+                <img src="${img.src}" alt="${img.alt}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <p style="color: #333; font-weight: bold;">Price: ${img.price}</p>
+              </div>`).join('')}
+          </div>
+        </div>
+      `);
+            }
+        </script>
+
+        <script>
+            createGallerySection("rooms-all", "Rooms Gallery", [
+                { src: "https://i.pinimg.com/736x/85/ad/19/85ad19b1de1d248090bdf63b784e9ca1.jpg", alt: "Room Image", price: "$500" },
+                { src: "https://i.pinimg.com/736x/6a/e2/8e/6ae28ed300ac717913310de9967f2954.jpg", alt: "Room Image", price: "$800" },
+                { src: "https://i.pinimg.com/736x/c2/20/04/c22004d24b25e3e86a0f26a9599ad147.jpg", alt: "Room Image", price: "$800" },
+            ]);
+
+            createGallerySection("windows", "Windows Gallery", [
+                { src: "https://i.pinimg.com/736x/31/07/56/3107562a18e538b6c91900980a0455bf.jpg", alt: "Window Image", price: "$300" },
+                { src: "https://i.pinimg.com/736x/24/50/aa/2450aa8df8db49a26a56d1e237c9744b.jpg", alt: "Window Image", price: "$400" },
+            ]);
+
+            createGallerySection("badrooms", "Badrooms Gallery", [
+                { src: "https://i.pinimg.com/736x/6a/e2/8e/6ae28ed300ac717913310de9967f2954.jpg", alt: "Badroom Image", price: "$600" },
+                { src: "https://i.pinimg.com/736x/c2/20/04/c22004d24b25e3e86a0f26a9599ad147.jpg", alt: "Badroom Image", price: "$700" },
+            ]);
+
+            createGallerySection("swimming-pool", "Swimming Pool Gallery", [
+                { src: "https://i.pinimg.com/1200x/68/34/e5/6834e5f30a0d2262eec9053e70ef821d.jpg", alt: "Swimming Pool Image", price: "$1000" },
+                { src: "https://i.pinimg.com/1200x/b4/58/75/b45875eee56083f1019b314291d40a6b.jpg", alt: "Swimming Pool Image", price: "$1200" },
+            ]);
+
+            createGallerySection("living-room", "Living Room Gallery", [
+                { src: "https://i.pinimg.com/1200x/2a/4f/e0/2a4fe0878d50019299084d37cc2191ba.jpg", alt: "Living Room Image", price: "$900" },
+                { src: "http://i.pinimg.com/1200x/a4/17/e8/a417e803ed699663058029a72f7ce2f0.jpg", alt: "Living Room Image", price: "$1100" },
+            ]);
+
+            createGallerySection("dining-room", "Dining Room Gallery", [
+                { src: "https://i.pinimg.com/1200x/c7/3b/80/c73b801a58621dd3cc1dc3cb0dde9c46.jpg", alt: "Dining Room Image", price: "$800" },
+                { src: "https://i.pinimg.com/736x/5f/89/02/5f89026daa3d6f1db2e54d3b7df829fb.jpg", alt: "Dining Room Image", price: "$950" },
+            ]);
+        </script>
+    </section>
+
+
+
+    <!-- Contact Form -->
+
+    <section id="contact"
+        style="width: 100%; padding: 50px 20px; background: linear-gradient(135deg, #f9f9f9, #ffffff); font-family: 'Arial', sans-serif; box-sizing: border-box;">
+        <!-- Owner Info -->
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2 style="font-size: 32px; color: #333; margin-bottom: 10px;">Contact Our Hotel Owner</h2>
+            <p style="font-size: 18px; color: #666;">Name: <strong>Mr.Kartik Sharma</strong></p>
+            <p style="font-size: 18px; color: #666;">Email: <a href="kartiksharma23@gmail.com"
+                    style="color: #007bff; text-decoration: none;">ranjeet@example.com</a></p>
+            <p style="font-size: 18px; color: #666;">Phone: <a href="tel:+91 7835626477"
+                    style="color: #28a745; text-decoration: none;">+91 7835626477</a></p>
+        </div>
+        <div
+            style="max-width: 800px; margin: 40px auto 0; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <h3 style="text-align: center; color: #333; font-size: 28px; margin-bottom: 20px;">Send Us a Message
+            </h3>
+            <form style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" placeholder="Your Name"
+                    style="padding: 12px 16px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px;" required />
+                <input type="email" placeholder="Your Email"
+                    style="padding: 12px 16px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px;" required />
+                <textarea placeholder="Your Message" rows="5"
+                    style="padding: 12px 16px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px; resize: vertical;"
+                    required></textarea>
+                <button type="submit"
+                    style="padding: 14px; font-size: 18px; background: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s;">
+                    Send Message
+                </button>
+            </form>
+        </div>
+
+
+
+
+        <script>
+
+
+            function toggleMenu() {
+                const nav = document.getElementById('nav-menu');
+                const toggle = document.getElementById('menu-toggle');
+                nav.classList.toggle('active');
+                toggle.classList.toggle('open');
+            }
+
+            function toggleForm() {
+                document.getElementById("popupForm").style.display = "flex";
+            }
+
+            function closePopup() {
+                document.getElementById("popupForm").style.display = "none";
+            }
+
+            window.addEventListener('scroll', function () {
+                const section = document.getElementById('about');
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (sectionTop < windowHeight - 100) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        </script>
+
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-40px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
+            }
+        </style>
+
+</body>
+
+</html>
